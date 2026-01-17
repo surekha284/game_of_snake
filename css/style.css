@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f4f4;
+}
+
+#gameCanvas {
+  background: #111;
+  width: 90vmin;
+  height: 90vmin;
+  max-width: 400px;
+  max-height: 400px;
+}
