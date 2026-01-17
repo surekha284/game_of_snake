@@ -20,3 +20,18 @@ function gameLoop() {
 }
 
 setInterval(gameLoop, 200);
+
+function moveSnake() {
+  const head = {
+    x: snake[0].x + direction.x,
+    y: snake[0].y + direction.y,
+  };
+
+  snake.unshift(head);
+  snake.pop();
+}
+
+function gameLoop() {
+  moveSnake();
+  draw();
+}
