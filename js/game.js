@@ -1,51 +1,23 @@
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+// game.js
+import { moveSnake, snake, growSnake } from "./snake.js";
+import { food, spawnFood } from "./food.js";
+import { drawBoard } from "./board.js";
 
-canvas.width = 400;
-canvas.height = 400;
+let direction = "RIGHT";
+spawnFood();
+drawBoard();
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  const cell = canvas.width / GRID_SIZE;
-
-  ctx.fillStyle = "lime";
-  snake.forEach((part) => {
-    ctx.fillRect(part.x * cell, part.y * cell, cell, cell);
-  });
+export function gameLoop() {
+  moveSnake(direction);
+  checkFoodCollision();
+  drawBoard();
 }
 
-function gameLoop() {
-  draw();
-}
-
-setInterval(gameLoop, 200);
-
-function moveSnake() {
-  const head = {
-    x: snake[0].x + direction.x,
-    y: snake[0].y + direction.y,
-  };
-
-  snake.unshift(head);
-  snake.pop();
-}
-
-// function gameLoop() {
-//   moveSnake();
-//   draw();
-// }
-
-function checkCollision() {
+function checkFoodCollision() {
   const head = snake[0];
-  if (head.x < 0 || head.y < 0 || head.x >= GRID_SIZE || head.y >= GRID_SIZE) {
-    alert("Game Over");
-    location.reload();
-  }
-}
 
-function gameLoop() {
-  moveSnake();
-  checkCollision();
-  draw();
+  if (head.x === food.x && head.y === food.y) {
+    growSnake();
+    spawnFood();
+  }
 }

@@ -18,3 +18,8 @@ body {
   max-width: 400px;
   max-height: 400px;
 }
+
+.food {
+  background-color: red;
+  border-radius: 50%;
+}
