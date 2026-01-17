@@ -31,7 +31,21 @@ function moveSnake() {
   snake.pop();
 }
 
+// function gameLoop() {
+//   moveSnake();
+//   draw();
+// }
+
+function checkCollision() {
+  const head = snake[0];
+  if (head.x < 0 || head.y < 0 || head.x >= GRID_SIZE || head.y >= GRID_SIZE) {
+    alert("Game Over");
+    location.reload();
+  }
+}
+
 function gameLoop() {
   moveSnake();
+  checkCollision();
   draw();
 }
